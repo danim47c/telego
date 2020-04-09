@@ -1,0 +1,6 @@
+bot_token: "1006153956:AAG6kUpYsCZ4TDlnue37DvE5rRzI-OejQ-c"
+database_path: "database.db"
+logging:
+  path: "logs.log"
+  level: 0
+  file_log_enabled: False
