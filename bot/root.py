@@ -76,7 +76,7 @@ def setup(tf: TeleFramework):
     func=lambda ctx: Redirect.create_to(['']) if ctx.user.blocked else False,
     paths=['/']
   ).register_spyder(
-    func=lambda ctx: ctx.send_msg(texts.no_group, clear_markup=True) if ctx.message.chat.type != 'private' else False
+    func=lambda ctx: ctx.send_msg(texts.no_group, clear_markup=True) if ctx.message and ctx.message.chat.type != 'private' else False
   )
 
   @tf.timeloop.job(interval=timedelta(seconds=60))
