@@ -116,24 +116,9 @@ schedule_node = MenuNode(
     )[-1]
   ),
   (
-    texts.posts_view_schedule_button_interval,
-    Redirect.create_go(['interval'])
-  ),
-  (
     texts.posts_view_schedule_button_channels,
     Redirect.create_go(['channels'])
   )
-).register_path(
-  'interval',
-  NumSelectorNode(
-    changers=(1, 15, 30, 60),
-    getter=lambda ctx: interval if (interval := Post.get(pid=ctx.params['pid']).interval) != None else 60,
-    setter=lambda ctx, num: Post.get(pid=ctx.params['pid']).set('interval', num).set('last', datetime.now().timestamp()),
-    init=texts.posts_view_schedule_interval,
-    final=Redirect.create_back(),
-    check=lambda ctx: False if ctx.params['num'] >= 60 else texts.posts_view_schedule_interval_more,
-    markup_scheme=(4,1,4,1)
-  ) 
 ).register_path(
   'channels',
   CheckListNode(
