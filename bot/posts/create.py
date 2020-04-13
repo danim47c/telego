@@ -1,9 +1,10 @@
 
 from telef.shortcuts import *
 
+from base64 import b64encode, b64decode
 
 def final_func(ctx: BaseContext):
-  post = Post.create(author=ctx.user, name=ctx.params['answers'][0], caption=ctx.params['answers'][1], file_id=ctx.params['answers'][2])
+  post = Post.create(author=ctx.user, name=b64decode(ctx.params['answers'][0]).decode(), caption=b64decode(ctx.params['answers'][1]).decode(), file_id=ctx.params['answers'][2])
 
   ctx.send_msg(texts.posts_create_successful)
 
@@ -16,11 +17,13 @@ create_node = FormNode(
 ).add_questions(
   (
     texts.posts_create_question_name,
-    lambda ctx: texts.posts_create_question_name_taken if Post.select().where(Post.name == ctx.text).exists() else texts.answer_no_more.format(num=256) if len(ctx.text) > 256 else False
+    lambda ctx: texts.posts_create_question_name_taken if Post.select().where(Post.name == ctx.text).exists() else texts.answer_no_more.format(num=256) if len(ctx.text) > 256 else False,
+    lambda ctx: b64encode(ctx.text.encode())
   ),
   (
     texts.posts_create_question_caption,
-    lambda ctx: texts.answer_no_more.format(num=256) if len(ctx.text) > 256 else False
+    lambda ctx: texts.answer_no_more.format(num=256) if len(ctx.text) > 256 else False,
+    lambda ctx: b64encode(ctx.text.encode())
   ),
   (
     texts.posts_create_question_photo,
