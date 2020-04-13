@@ -17,13 +17,11 @@ create_node = FormNode(
 ).add_questions(
   (
     texts.posts_create_question_name,
-    lambda ctx: texts.posts_create_question_name_taken if Post.select().where(Post.name == ctx.text).exists() else texts.answer_no_more.format(num=256) if len(ctx.text) > 256 else False,
-    lambda ctx: b64encode(ctx.text.encode())
+    lambda ctx: texts.posts_create_question_name_taken if Post.select().where(Post.name == ctx.text).exists() else texts.answer_no_more.format(num=256) if len(ctx.text) > 256 else False
   ),
   (
     texts.posts_create_question_caption,
-    lambda ctx: texts.answer_no_more.format(num=256) if len(ctx.text) > 256 else False,
-    lambda ctx: b64encode(ctx.text.encode())
+    lambda ctx: texts.answer_no_more.format(num=256) if len(ctx.text) > 256 else False
   ),
   (
     texts.posts_create_question_photo,
