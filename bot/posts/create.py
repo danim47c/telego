@@ -1,6 +1,7 @@
 
 from telef.shortcuts import *
 
+from base64 import b64encode, b64decode
 
 def final_func(ctx: BaseContext):
   post = Post.create(author=ctx.user, name=ctx.params['answers'][0], caption=ctx.params['answers'][1], file_id=ctx.params['answers'][2])
