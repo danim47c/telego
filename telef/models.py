@@ -106,7 +106,7 @@ class Post(BaseModel):
 
     scheduled = pw.BooleanField(default=False)
 
-    interval = pw.IntegerField(default=20)
+    interval = pw.IntegerField(default=60)
 
     last = pw.DoubleField(default=0.0)
 

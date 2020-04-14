@@ -106,7 +106,7 @@ schedule_node = MenuNode(
     default_markup=True
   ),
   back=Redirect.create_back(),
-  markup_scheme=(1, 2, 1)
+  markup_scheme=(1, 1, 1)
 ).add_options(
   (
     texts.posts_view_schedule_button_toggle,
