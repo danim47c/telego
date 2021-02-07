@@ -316,19 +316,19 @@ class Node(object):
       )(ctx)
     
     else:
-      try:
-        spyders = [spyder(ctx) for spyder in self.spyders]
+        try:
+            spyders = [spyder(ctx) for spyder in self.spyders]
 
-        if len(spyders) != 0 and len(reds := [spyder for spyder in filter(lambda spyder: spyder != False, spyders)]) > 0:
-          return reds[-1]
+            if len(spyders) != 0 and len(reds := [spyder for spyder in filter(lambda spyder: spyder != False, spyders)]) > 0:
+                return reds[-1]
 
-        next_path = self.paths[ctx.path.next_path.split(r'?')[0]]
-        ctx.update_params()
+            next_path = self.paths[ctx.path.next_path.split(r'?')[0]]
+            ctx.update_params()
 
-      except KeyError:
-        return self.path_not_found(ctx)
+        except KeyError:
+            return self.path_not_found(ctx)
 
-      return next_path(ctx) if callable(next_path) else next_path.run(ctx) if issubclass(next_path.__class__, Node) else next_path
+        return next_path(ctx) if callable(next_path) else next_path.run(ctx) if issubclass(next_path.__class__, Node) else next_path
 
 class MainNode(Node):
   def __init__(self, tf):
@@ -343,12 +343,13 @@ class MainNode(Node):
       if not ctx.init and ctx.is_command:
         return self.tf.commands[ctx.command](ctx)
 
-      spyders = list(spyder(ctx) for spyder in self.tf.spyders['|'])
+      if type(ctx) != CallbackContext:
+        spyders = list(spyder(ctx) for spyder in self.tf.spyders['|'])
 
-      spyders += list(spyder(ctx) for spyder in self.tf.spyders[first_path]) if (first_path := ctx.path.path[0]) in self.tf.spyders else []
+        spyders += list(spyder(ctx) for spyder in self.tf.spyders[first_path]) if (first_path := ctx.path.path[0]) in self.tf.spyders else []
 
-      if len(spyders) != 0 and len(reds := [spyder for spyder in filter(lambda spyder: spyder != False, spyders)]) > 0:
-        return reds[-1]
+        if len(spyders) != 0 and len(reds := [spyder for spyder in filter(lambda spyder: spyder != False, spyders)]) > 0:
+          return reds[-1]
 
       next_path = self.tf.paths[ctx.path.next_path.split(r'?')[0]]
       ctx.update_params()

@@ -21,7 +21,7 @@ create_node = FormNode(
   ),
   (
     texts.posts_create_question_caption,
-    lambda ctx: texts.answer_no_more.format(num=256) if len(ctx.text) > 256 else False
+    lambda ctx: texts.answer_no_more.format(num=1024) if len(ctx.text) > 1024 else False
   ),
   (
     texts.posts_create_question_photo,

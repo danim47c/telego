@@ -20,7 +20,7 @@ class TeleFramework(object):
   def __init__(self, default_path: list = [''], content_types: list = ['text']):
     
     self.bot = TelegramBot(
-      token=config['bot_token']
+      config['bot_token']
     )
 
     self.logger = Logger(

@@ -1,5 +1,0 @@
-pytelegrambotapi
-peewee
-colorama
-pyyaml
-timeloop

@@ -72,6 +72,7 @@ non_verified_user = 'You have to be patient until an admin verifies you'
 
 
 menu = 'Menu'
+no_group = "No group"
 
 menu_button_posts_list = 'Posts List'
 menu_button_post_create = 'Create Post'
@@ -89,6 +90,8 @@ posts_view_button_schedule = 'Schedule'
 posts_view_button_edit = 'Edit'
 posts_view_button_remove = 'Remove'
 posts_view_button_view = 'View'
+posts_view_button_send = "Send"
+posts_view_send_choose = "Send"
 
 posts_view_schedule = 'Scheduled: {scheduled}\n   Interval: {interval}\n  Channels: {channels}'
 posts_view_scheduled_yes = 'Yes'
