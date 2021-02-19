@@ -1,2 +1,2 @@
 language = "python3"
-run = "pipenv run python3 main.py"
+run = "poetry run pipenv install && poetry run pipenv run python3 main.py"

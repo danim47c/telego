@@ -100,7 +100,7 @@ def test_node_func(ctx: BaseContext):
 
     time_sleep(3)
 
-    return Redirect.create_move('public')
+    return Redirect.create_back(2)
 
   name = msg.chat.title
 

@@ -8,7 +8,7 @@ pyyaml = "*"
 peewee = "*"
 timeloop = "*"
 colorama = "*"
-pytelegrambotapi = "*"
+pytelegrambotapi = "3.7.1"
 
 [dev-packages]
 

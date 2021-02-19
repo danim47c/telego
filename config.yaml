@@ -1,4 +1,4 @@
-bot_token: "1006153956:AAG6kUpYsCZ4TDlnue37DvE5rRzI-OejQ-c"
+bot_token: "1006153956:AAFFrnYxCTCdfFnVWexbVzWEKizegxZTjiQ"
 database_path: "database.db"
 logging:
   path: "logs.log"

@@ -139,10 +139,16 @@ class FormNode(Node):
       ctx.send_msg(resp, default_markup=True)
 
       return self.send_question(qid, ctx, no_ans=True)
+
+    if "|" in ctx.text or "=" in ctx.text:
+      ctx.send_msg("Invalid characters found: " + ("|" if "|" in ctx.text else "="), default_markup=True)
+
+      return self.send_question(qid, ctx, no_ans=True)
     
     entry = question[2](ctx) if len(question) == 3 else ctx.text
     
     if qid + 1 == len(self.questions):
+      print(ctx.params['answers'] + [entry])
       return self.final(
         ctx.set_params(
           answers=ctx.params['answers'] + [entry]
