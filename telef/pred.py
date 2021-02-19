@@ -148,7 +148,6 @@ class FormNode(Node):
     entry = question[2](ctx) if len(question) == 3 else ctx.text
     
     if qid + 1 == len(self.questions):
-      print(ctx.params['answers'] + [entry])
       return self.final(
         ctx.set_params(
           answers=ctx.params['answers'] + [entry]

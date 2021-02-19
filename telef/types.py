@@ -38,7 +38,6 @@ class Path(object):
 
   def get_params(string: str):
     if len(string.split(r'?')) > 1:
-      print(string)
       return {
         (splitted := param.split(r'='))[0]: literal_eval(splitted[1]) for param in string.split(r'?')[-1].split(r'&')
       }
